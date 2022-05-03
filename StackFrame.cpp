@@ -172,7 +172,16 @@ void StackFrame::runloadstore(string instr, string var, operand val)
                     {
                         t.data_int = t2.data_int;
                     }
-                    LocalVariableSpace->insert(var, t1.data_bool, t);
+                    AVLNode<string, variable> *temp = LocalVariableSpace->find(var);
+                    if (temp)
+                    {
+                        temp->isFloat = t1.data_bool;
+                        temp->val = t;
+                    }
+                    else
+                    {
+                        LocalVariableSpace->insert(var, t1.data_bool, t);
+                    }
                 }
             }
         }
