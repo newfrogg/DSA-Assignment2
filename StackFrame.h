@@ -380,12 +380,8 @@ public:
 
     AVLNode<K, V> *findParentRec(const K &key, AVLNode<K, V> *node)
     {
-        if (!node)
+        if (node == nullptr || node->key == key)
             return nullptr;
-        if (!node->left && !node->right)
-        {
-            return nullptr;
-        }
         if ((node->left && node->left->key == key) ||
             (node->right && node->right->key == key))
         {
